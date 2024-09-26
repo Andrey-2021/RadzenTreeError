@@ -1,0 +1,44 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<br/>
+	<RadzenTree AllowCheckBoxes="true"
+		@bind-CheckedValues=@CheckedValues
+		Style="width:200px; height:300px"
+		Data=@Categories
+			Change=@OnChange>
+			<RadzenTreeLevel TextProperty="@nameof(Category.Name)"/>
+	</RadzenTree>
+
+@code{
+	int count;
+	IEnumerable<object> CheckedValues{ get; set; }
+	IEnumerable
+	<Category> Categories{ get; set; }
+
+	protected override void OnInitialized()
+	{
+		Categories = new List<Category>()
+		{
+			new Category(){Name="bob"},
+			new Category(){Name="vov"},
+			new Category(){Name="tut"}
+		};
+	}
+
+	protected void OnChange(TreeEventArgs args)
+	{
+		
+	}
+
+	class Category
+	{
+		public string Name {get; set;}
+	}
+
+}
